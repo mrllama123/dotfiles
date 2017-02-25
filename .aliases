@@ -1,0 +1,7 @@
+alias p="ping www.google.com"
+alias n="sudo nmtui"
+alias docker-setup="sudo vim /etc/systemd/system/docker.service.d/noiptables.conf"
+alias ubuntu="docker run -it --rm  ubuntu:16.04 /bin/bash"
+alias centos="docker run -it --rm centos:7 /bin/bash"
+alias alpine="docker run -it --rm alpine:latest /bin/ash"
+alias weather="curl wttr.in/wellington"

@@ -22,9 +22,9 @@ set $indicator           #1d1316
 # Startup programs
 exec_always --no-startup-id compton
 #exec_always feh --bg-scale /home/bob/Pictures/04110_cannonbeachsunset_1920x1080.jpg  #scifiWall/049-yIUEGAq.jpg
-exec guake
-exec variety
-exec redshift-gtk
+exec --no-startup-id guake
+exec --no-startup-id variety
+exec --no-startup-id redshift-gtk
 exec --no-startup-id nm-applet
 #exec --no-startup-id menutray -r
 exec_always  xfce4-power-manager

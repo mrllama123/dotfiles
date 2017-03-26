@@ -88,7 +88,7 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
-export TOKEN="a2e633179a4296dbdc9225044b1c61ad674054efc595eb01bee8c1b0b180a187"
+
 
 
 #go path

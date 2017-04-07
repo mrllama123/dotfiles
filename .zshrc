@@ -97,7 +97,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #ruby and gem path
 
-# Setting the GEM_PATH and GEM_HOME variables may not be necessary, check 'gem env' output to verify whether both variables already exist 
+# Setting the GEM_PATH and GEM_HOME variables may not be necessary, check 'gem env' output to verify whether both variables already exist
 #GEM_HOME=$(ls -t -U | ruby -e 'puts Gem.user_dir')
 #GEM_PATH=$GEM_HOME
 #export PATH=$PATH:$GEM_HOME/bin
@@ -110,5 +110,3 @@ export PYTHONPATH=/usr/lib/python3.6/site-packages
 
 #allow 256 colors.....
 export TERM=xterm-256color
-
-

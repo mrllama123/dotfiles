@@ -21,10 +21,10 @@ set $indicator           #1d1316
 
 # Startup programs
 exec_always --no-startup-id compton
-#exec_always feh --bg-scale /home/bob/Pictures/04110_cannonbeachsunset_1920x1080.jpg  #scifiWall/049-yIUEGAq.jpg
-exec --no-startup-id guake
-exec --no-startup-id variety
-exec --no-startup-id redshift-gtk
+exec --no-startup-id volumeicon
+exec guake
+exec variety
+exec redshift-gtk
 exec --no-startup-id nm-applet
 #exec --no-startup-id menutray -r
 exec_always  xfce4-power-manager
@@ -32,12 +32,7 @@ exec_always --no-startup-id pamac-tray
 exec /usr/lib/polkit-1/polkitd --no-debug
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-
-set $mod Mod4
-
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
+# font to use
 #font pango:DejaVu 12px
 font pango:System San Francisco Display 10
 
@@ -47,11 +42,17 @@ font pango:System San Francisco Display 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+
+#----------------Key configurations-----------------------
+# sets the mod key
+set $mod Mod4
+
+
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+Shift+t exec termite
 
-#Key configurations-----------------------
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -105,6 +106,22 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+#bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+d exec rofi -show Drun -config /home/bob/.config/i3/rofi.conf
 
 #----------------gaps settings----------------------
 smart_gaps on
@@ -214,6 +231,7 @@ hide_edge_borders both
 #----------------bar settings----------------------
 
 bar {
+    height 23
     status_command i3blocks -c /home/bob/.config/i3/i3blocks.conf
     colors {
   		background $bg-color
@@ -226,12 +244,10 @@ bar {
 }
 
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-bindsym $mod+d exec rofi -show Drun -config /home/bob/.config/i3/rofi.conf
+
+
+
+#----------------bar settings----------------------
 
 
 set $Locker i3lock && sleep 0.5
@@ -250,23 +266,4 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Pause mode "$mode_system"
-
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%  #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-# Touchpad controls
-#bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+Insert mode "$mode_system"

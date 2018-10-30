@@ -2,7 +2,7 @@
 sudo pacman -Syu
 
 # install preq
-sudo pacman -S firefox git yay code arc-gtk-theme jq zsh
+sudo pacman -S firefox git yay code arc-gtk-theme jq zsh termite light-locker
 
 yay -S numix-icon-theme-git numix-circle-icon-theme-git 
 

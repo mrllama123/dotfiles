@@ -3,7 +3,7 @@ sudo pacman -Syu
 
 # install preq
 sudo pacman -S firefox git yay code arc-gtk-theme jq zsh termite light-locker
-
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 yay -S numix-icon-theme-git numix-circle-icon-theme-git 
 
 # download repo

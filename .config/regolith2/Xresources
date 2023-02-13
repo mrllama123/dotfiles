@@ -1,0 +1,6 @@
+regolith.look.path: /usr/share/regolith-look/nord
+
+## wallpaper
+regolith.wallpaper.file: /home/bob/Pictures/wallpapers/l_ash03_big.jpg
+regolith.wallpaper.options: zoom
+

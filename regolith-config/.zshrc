@@ -103,6 +103,17 @@ export DOCKER_HOST="unix:///run/user/1000/podman/podman.sock"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# cdk
+alias cdk="npx cdk@latest"
+alias cdk-deploy-all="sudo rm -rf cdk.out && cdk deploy --all --concurrency 20 --require-approval never"
+
+# password
+alias pass-gen="openssl rand -base64 32"
+
+#networking
+alias open-ports="sudo netstat -tulpn"
+
+
 # cli copy/paste
 alias copy-clip="xclip -selection clipboard"
 

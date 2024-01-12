@@ -29,10 +29,10 @@ create_podman_dev () {
 
 }
 
-if [[ $0 -eq "docker" ]]
-  then create_docker_dev
-  else create_podman_dev
+if [[ $# -eq 0 ]] ; then
+  create_podman_dev
+elif [[ $0 -eq "docker" ]] ; then
+	create_docker_dev
+else
+	create_podman_dev
 fi
-
-
-

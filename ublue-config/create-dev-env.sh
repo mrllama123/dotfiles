@@ -1,6 +1,6 @@
 #!/bin/bash
 
-create_docker_dev () {
+create_docker_dev_separate_instance () {
   echo "creating docker dev machine from image quay.io/toolbx-images/ubuntu-toolbox:22.04"
 
   # docker version 
@@ -15,7 +15,7 @@ create_docker_dev () {
 
 }
 
-create_podman_dev () {
+create_podman_dev_separate_instance () {
 
   echo "creating podman dev machine from image quay.io/toolbx-images/ubuntu-toolbox:22.04"
 
@@ -30,9 +30,9 @@ create_podman_dev () {
 }
 
 if [[ $# -eq 0 ]] ; then
-  create_podman_dev
+  create_podman_dev_separate_instance
 elif [[ $0 -eq "docker" ]] ; then
-	create_docker_dev
+	create_docker_dev_separate_instance
 else
-	create_podman_dev
+	create_podman_dev_separate_instance
 fi

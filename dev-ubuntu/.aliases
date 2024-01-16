@@ -1,0 +1,24 @@
+# cdk
+alias cdk="npx cdk@latest"
+alias cdk-deploy-all="sudo rm -rf cdk.out && cdk deploy --all --concurrency 20 --require-approval never"
+
+# password
+alias pass-gen="openssl rand -base64 32"
+
+#networking
+alias open-ports="sudo netstat -tulpn"
+
+
+# cli copy/paste
+alias copy-clip="xclip -selection clipboard"
+
+# config editor commands
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+# local doc web runner commands
+alias personal-notes-web='(cd ~/dev/personal-notes && docker-compose up -d --build && echo "personal notes site running on: http://localhost:8000")'
+alias personal-notes-web-del='(cd ~/dev/personal-notes && docker-compose down)'
+alias desktop-docs='(cd ~/dev/regolith-desktop-website && docker-compose up -d --build && echo "desktop docs running on: http://localhost:1313")'
+alias desktop-docs-del='(cd ~/dev/regolith-desktop-website && docker-compose down)'
+alias desktop-docs-update='(cd ~/dev/regolith-desktop-website && git pull)'

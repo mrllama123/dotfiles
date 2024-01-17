@@ -79,13 +79,13 @@ source $ZSH/oh-my-zsh.sh
 # Check if .alias file exists
 if [ -f "${home_dir}/.aliases" ]; then
     # Import aliases from .alias file
-    source "${home_dir}//.aliases"
+    source "${home_dir}/.aliases"
 fi
 
 # Check if .env-var file exists
-if [ -f "${home_dir}//.env-var" ]; then
+if [ -f "${home_dir}/.env-vars" ]; then
     # Import environment variables from .env-var file
-    source "${home_dir}//.env-var"
+    source "${home_dir}/.env-vars"
 fi
 
 # export MANPATH="/usr/local/man:$MANPATH"

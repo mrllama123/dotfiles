@@ -21,6 +21,12 @@ Then to setup distrobox dev environments curl the `build-devboxes.sh` script and
 # run in env directory
 curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/build-devboxes.sh | bash 
 ```
+or download the script and run it:
+
+```bash
+curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/build-devboxes.sh -o build-devboxes.sh
+./build-devboxes.sh
+```
 
 By default it will create the home folders in `~/distrobox` and the distroboxes will be named `devbox-<distro>` and use home dir via the `$HOME` env var this can be changed via params to the script
 To find out what the params are run:

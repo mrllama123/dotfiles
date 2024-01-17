@@ -4,7 +4,7 @@
 home_dir=$HOME
 user=$USER
 ssh_key="${home_dir}/.ssh/id_ed25519.pub"
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+script_dir=$(pwd)
 
 
 # Function to display help message

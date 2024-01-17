@@ -13,7 +13,7 @@ echo "================ installing oh-my-zsh ================\n"
 
 curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
 
-cat ${full_script_path}/.zshrc > ${home_dir}/distrobox/python-dev/.zshrc;
+cat ${full_script_path}/.zshrc.devbox > ${home_dir}/distrobox/python-dev/.zshrc;
 
 echo "================ installing vscode ================\n"
 

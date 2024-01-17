@@ -64,7 +64,7 @@ fi
 
 cat distrobox.template.ini | envsubst > distrobox.ini
 
-cat .zshrc.template | envsubst > .zshrc
+cat .zshrc.template | envsubst > .zshrc.devbox
 
 cat init-user-hook.template.sh | envsubst > init-user-hook.sh
 

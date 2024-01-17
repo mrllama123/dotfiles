@@ -58,15 +58,15 @@ if [ ! -f .zshrc.template ]; then
     curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/.zshrc.template -o .zshrc.template
 fi
 
-if [ ! -f init-user-hook.template.sh ]; then
-    curl -s  https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/init-user-hook.template.sh   -o init-user-hook.template.sh
+if [ ! -f post-setup.template.sh ]; then
+    curl -s  https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/post-setup.template.sh  -o init-user-hook.template.sh
 fi
 
 cat distrobox.template.ini | envsubst > distrobox.ini
 
 cat .zshrc.template | envsubst > .zshrc.devbox
 
-cat init-user-hook.template.sh | envsubst > init-user-hook.sh
+cat post-setup.template.sh | envsubst > post-setup.sh
 
 echo "building & creating devboxes"
 

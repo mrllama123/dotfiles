@@ -7,13 +7,13 @@ git config --global user.email 'piesrule123@gmail.com'
 
 echo "================ installing asdf ================\n"
 
-https://github.com/asdf-vm/asdf.git ${home_dir}/distrobox/python-dev/.asdf --branch v0.13.1
+git clone https://github.com/asdf-vm/asdf.git ${home_dir}/distrobox/python-dev/.asdf --branch v0.13.1
 
 echo "================ installing oh-my-zsh ================\n"
 
 curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
 
-cat ${full_script_path}/.zshrc.devbox > ${home_dir}/distrobox/python-dev/.zshrc;
+cat ${home_dir}/distrobox/python-dev/.zshrc.devbox > ${home_dir}/distrobox/python-dev/.zshrc;
 
 echo "================ installing vscode ================\n"
 

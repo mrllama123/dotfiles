@@ -26,7 +26,7 @@ By default it will create the home folders in `~/distrobox` and the distroboxes 
 To find out what the params are run:
 
 ```bash
-curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/build-devboxes.sh | bash -s -- 'help'
+curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/build-devboxes.sh | bash -s -- '--help'
 ```
 or if downloaded:
 

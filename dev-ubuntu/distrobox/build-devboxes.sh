@@ -4,8 +4,7 @@
 home_dir=$HOME
 user=$USER
 ssh_key="${home_dir}/.ssh/id_ed25519.pub"
-script_dir=$(dirname "$0")
-full_script_path=$(realpath "$dir")
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 
 # Function to display help message
@@ -46,13 +45,28 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-export home_dir user ssh_key full_script_path
+export home_dir user ssh_key script_dir
 
 echo "creating distrobox.ini & .zshrc files"
+
+
+if [ ! -f distrobox.template.ini ]; then
+    curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/distrobox.template.ini -o distrobox.template.ini
+fi
+
+if [ ! -f .zshrc.template ]; then
+    curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/.zshrc.template -o .zshrc.template
+fi
+
+if [ ! -f init-user-hook.template.sh ]; then
+    curl -s  https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/init-user-hook.template.sh   -o init-user-hook.template.sh
+fi
 
 cat distrobox.template.ini | envsubst > distrobox.ini
 
 cat .zshrc.template | envsubst > .zshrc
+
+cat init-user-hook.template.sh | envsubst > init-user-hook.sh
 
 echo "building & creating devboxes"
 

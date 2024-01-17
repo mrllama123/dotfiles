@@ -76,6 +76,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# ensure that distrobox always uses home directory for the container as working directory
+export DBX_SKIP_WORKDIR=1
+
 # Check if .alias file exists
 if [ -f "$HOME/.aliases" ]; then
     # Import aliases from .alias file

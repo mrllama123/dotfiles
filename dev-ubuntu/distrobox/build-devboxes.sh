@@ -4,6 +4,8 @@
 home_dir=$HOME
 user=$USER
 ssh_key="${home_dir}/.ssh/id_ed25519.pub"
+script_dir=$(dirname "$0")
+full_script_path=$(realpath "$dir")
 
 
 # Function to display help message
@@ -44,11 +46,13 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-export home_dir user ssh_key
+export home_dir user ssh_key full_script_path
 
-echo "creating distrobox.ini file"
+echo "creating distrobox.ini & .zshrc files"
 
 cat distrobox.template.ini | envsubst > distrobox.ini
+
+cat .zshrc.template | envsubst > .zshrc
 
 echo "building & creating devboxes"
 

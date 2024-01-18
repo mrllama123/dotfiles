@@ -5,16 +5,6 @@ echo "================ configuring git ================\n"
 git config --global user.name 'mrllama123'
 git config --global user.email 'piesrule123@gmail.com'
 
-echo "================ installing asdf ================\n"
-
-git clone https://github.com/asdf-vm/asdf.git /home/bob/distrobox/python-dev/.asdf --branch v0.13.1
-
-echo "================ installing oh-my-zsh ================\n"
-sudo apt install zsh -y
-curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
-
-cat /home/bob/distrobox/python-dev/.zshrc.devbox > /home/bob/distrobox/python-dev/.zshrc;
-
 echo "================ installing vscode ================\n"
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -32,5 +22,23 @@ sudo apt install code -y
 echo "================ setup dev folder config ================\n"
 
 mkdir -p /home/bob/distrobox/python-dev/dev
+
+
+echo "================ installing  & setting upasdf plugins awscli & github-cli ================\n"
+
+
+asdf plugin add github-cli
+
+asdf install github-cli latest
+
+asdf global github-cli latest
+
+asdf plugin add awscli
+
+asdf install awscli latest
+
+asdf global awscli latest
+
+gh config set git_protocol ssh
 
 

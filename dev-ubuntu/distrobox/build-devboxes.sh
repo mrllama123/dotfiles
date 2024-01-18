@@ -63,8 +63,8 @@ if [ ! -f .zshrc.template ]; then
     curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/.zshrc.template -o .zshrc.template
 fi
 
-if [ ! -f post-setup.template.sh ]; then
-    curl -s  https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/post-setup.template.sh  -o init-user-hook.template.sh
+if [ ! -f init-hooks.template.sh ]; then
+    curl -s  https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/init-hooks.template.sh  -o init-hooks.template.sh
 fi
 
 cat distrobox.template.ini | envsubst '$home_dir user $ssh_key $script_dir' > distrobox.ini
@@ -77,3 +77,6 @@ echo "building & creating devboxes"
 
 distrobox assemble create
 
+chmod +x init-hooks.sh
+cp init-hooks.sh ~/distrobox/python-dev/init-hooks.sh
+cp .zshrc.devbox ~/distrobox/python-dev/.zshrc.devbox

@@ -7,10 +7,10 @@ git config --global user.email 'piesrule123@gmail.com'
 
 echo "================ installing asdf ================\n"
 
-https://github.com/asdf-vm/asdf.git /home/bob/distrobox/python-dev/.asdf --branch v0.13.1
+git clone https://github.com/asdf-vm/asdf.git /home/bob/distrobox/python-dev/.asdf --branch v0.13.1
 
 echo "================ installing oh-my-zsh ================\n"
-
+sudo apt install zsh -y
 curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
 
 cat /home/bob/distrobox/python-dev/.zshrc.devbox > /home/bob/distrobox/python-dev/.zshrc;
@@ -32,22 +32,5 @@ sudo apt install code -y
 echo "================ setup dev folder config ================\n"
 
 mkdir -p /home/bob/distrobox/python-dev/dev
-
-
-# echo "================ installing asdf plugins awscli & github-cli ================\n"
-
-# source ~/.zshrc
-
-# . /home/bob/distrobox/python-dev/.asdf/bin/asdf plugin add github-cli 
-
-# . /home/bob/distrobox/python-dev/.asdf/bin/asdf install github-cli latest
-
-# . /home/bob/distrobox/python-dev/.asdf/bin/asdf global github-cli latest
-
-# . /home/bob/distrobox/python-dev/.asdf/bin/asdf plugin add awscli
-
-# . /home/bob/distrobox/python-dev/.asdf/bin/asdf install awscli latest
-
-# . /home/bob/distrobox/python-dev/.asdf/bin/asdf global awscli latest
 
 

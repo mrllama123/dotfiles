@@ -49,6 +49,11 @@ export home_dir user ssh_key script_dir
 
 echo "creating distrobox.ini & .zshrc files"
 
+#temp remove
+if [ -d ~/distrobox/python-dev ]; then
+    sudo rm -rf ~/distrobox/python-dev
+fi
+
 
 if [ ! -f distrobox.template.ini ]; then
     curl -s https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/distrobox.template.ini -o distrobox.template.ini
@@ -66,7 +71,7 @@ cat distrobox.template.ini | envsubst '$home_dir user $ssh_key $script_dir' > di
 
 cat .zshrc.template | envsubst '$home_dir user $ssh_key $script_dir' > .zshrc.devbox
 
-cat post-setup.template.sh | envsubst '$home_dir user $ssh_key $script_dir' > post-setup.sh
+cat init-hooks.template.sh | envsubst '$home_dir user $ssh_key $script_dir' > init-hooks.sh
 
 echo "building & creating devboxes"
 

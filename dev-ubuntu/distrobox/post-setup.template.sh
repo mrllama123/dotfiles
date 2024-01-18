@@ -10,7 +10,7 @@ echo "================ installing asdf ================\n"
 git clone https://github.com/asdf-vm/asdf.git ${home_dir}/distrobox/python-dev/.asdf --branch v0.13.1
 
 echo "================ installing oh-my-zsh ================\n"
-
+sudo apt install zsh -y
 curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
 
 cat ${home_dir}/distrobox/python-dev/.zshrc.devbox > ${home_dir}/distrobox/python-dev/.zshrc;
@@ -36,7 +36,7 @@ mkdir -p ${home_dir}/distrobox/python-dev/dev
 
 # echo "================ installing asdf plugins awscli & github-cli ================\n"
 
-# source ~/.zshrc
+#source ~/.zshrc
 
 # . ${home_dir}/distrobox/python-dev/.asdf/bin/asdf plugin add github-cli 
 

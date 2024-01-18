@@ -62,11 +62,11 @@ if [ ! -f post-setup.template.sh ]; then
     curl -s  https://raw.githubusercontent.com/mrllama123/dotfiles/master/dev-ubuntu/distrobox/post-setup.template.sh  -o init-user-hook.template.sh
 fi
 
-cat distrobox.template.ini | envsubst > distrobox.ini
+cat distrobox.template.ini | envsubst '$home_dir user $ssh_key $script_dir' > distrobox.ini
 
-cat .zshrc.template | envsubst > .zshrc.devbox
+cat .zshrc.template | envsubst '$home_dir user $ssh_key $script_dir' > .zshrc.devbox
 
-cat post-setup.template.sh | envsubst > post-setup.sh
+cat post-setup.template.sh | envsubst '$home_dir user $ssh_key $script_dir' > post-setup.sh
 
 echo "building & creating devboxes"
 

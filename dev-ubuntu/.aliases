@@ -16,9 +16,3 @@ alias copy-clip="xclip -selection clipboard"
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
-# local doc web runner commands
-alias personal-notes-web='(cd ~/dev/personal-notes && docker-compose up -d --build && echo "personal notes site running on: http://localhost:8000")'
-alias personal-notes-web-del='(cd ~/dev/personal-notes && docker-compose down)'
-alias desktop-docs='(cd ~/dev/regolith-desktop-website && docker-compose up -d --build && echo "desktop docs running on: http://localhost:1313")'
-alias desktop-docs-del='(cd ~/dev/regolith-desktop-website && docker-compose down)'
-alias desktop-docs-update='(cd ~/dev/regolith-desktop-website && git pull)'

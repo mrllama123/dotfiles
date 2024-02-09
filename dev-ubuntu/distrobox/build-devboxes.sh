@@ -69,7 +69,7 @@ fi
 
 cat distrobox.template.ini | envsubst '$home_dir user $ssh_key $script_dir' > distrobox.ini
 
-cat .zshrc.template | envsubst '$home_dir user $ssh_key $script_dir' > .zshrc.devbox
+cat .zshrc.template | envsubst '$home_dir user $ssh_key $script_dir' > zshrc-devbox
 
 cat init-hooks.template.sh | envsubst '$home_dir user $ssh_key $script_dir' > init-hooks.sh
 
@@ -79,4 +79,6 @@ distrobox assemble create
 
 chmod +x init-hooks.sh
 cp init-hooks.sh ~/distrobox/python-dev/init-hooks.sh
-cp .zshrc.devbox ~/distrobox/python-dev/.zshrc.devbox
+cp zshrc-devbox ~/distrobox/python-dev/zshrc-devbox
+echo "export ZSH=" > "${home_dir}/distrobox/python-dev/.zshrc"
+rm -f distrobox.ini zshrc-devbox init-hooks.sh

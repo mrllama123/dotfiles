@@ -88,7 +88,6 @@ if [ -f "${home_dir}/.env-vars" ]; then
     source "${home_dir}/.env-vars"
 fi
 
-export ASDF_DIR="${home_dir}/.adsf"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

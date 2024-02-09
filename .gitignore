@@ -1,4 +1,4 @@
 dev-ubuntu/distrobox/distrobox.ini
 dev-ubuntu/distrobox/init-user-hook.sh
 dev-ubuntu/distrobox/.zshrc
-dev-ubuntu/distrobox/.zshrc.devbox
+dev-ubuntu/distrobox/zshrc-devbox

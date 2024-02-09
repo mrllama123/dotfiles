@@ -5,6 +5,14 @@ echo "================ configuring git ================\n"
 git config --global user.name 'mrllama123'
 git config --global user.email 'piesrule123@gmail.com'
 
+echo "================ installing ohmyzsh ================\n"
+
+curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
+
+echo "================ installing asdf ================\n"
+
+git clone https://github.com/asdf-vm/asdf.git ${home_dir}/distrobox/python-dev/.asdf --branch v0.14.0
+
 echo "================ installing vscode ================\n"
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg

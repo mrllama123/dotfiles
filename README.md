@@ -17,4 +17,5 @@ a place where i will keep my config files
 ```
 
 [`linux-laptop`](linux-laptop/) - my current configs for my linux laptop
+
 [`old-configs`](old-configs/) - old configs that i used to use

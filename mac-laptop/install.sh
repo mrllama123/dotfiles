@@ -63,7 +63,11 @@ python -m pip install --upgrade pip
 
 pip install pipx
 
+pipx ensurepath
+
 pipx install poetry poethepoet
+
+poetry config virtualenvs.in-project true
 
 echo "================ installing & setting up node  =================\n"
 

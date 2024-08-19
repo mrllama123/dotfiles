@@ -22,6 +22,13 @@ echo "======== installing asdf  ========="
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 
+echo "======== setting up ssh ========="
+
+ssh-keygen -t ed25519 -C "pierule123@gmail.com"
+
+echo "Host github.com\nAddKeysToAgent yes\nUseKeychain yes\nIdentityFile ~/.ssh/id_ed25519" > ~/.ssh/config
+
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 echo "================ setting up asdf github ================\n"
 

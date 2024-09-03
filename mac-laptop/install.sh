@@ -30,6 +30,13 @@ echo "Host github.com\nAddKeysToAgent yes\nUseKeychain yes\nIdentityFile ~/.ssh/
 
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
+echo "======== configuring git ========="
+
+git config --global user.name "Bob Bruce"
+git config --global user.email "<pierule123@gmail.com>"
+
+git config --global init.defaultBranch master
+
 echo "================ setting up asdf github ================\n"
 
 

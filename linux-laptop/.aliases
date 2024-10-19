@@ -16,3 +16,4 @@ alias copy-clip="xclip -selection clipboard"
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
+alias zshre="source ~/.zshrc"

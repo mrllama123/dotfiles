@@ -2,7 +2,7 @@
 
 echo "================ install packages ================\n"
 
-sudo apt install -y curl git openssh-client gpg make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fonts-noto-color-emoji
+sudo apt install -y curl git openssh-client gpg make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fonts-noto-color-emoji zsh
 
 echo "================ configuring git ================\n"
 
@@ -12,6 +12,7 @@ git config --global user.email 'piesrule123@gmail.com'
 echo "================ installing ohmyzsh ================\n"
 
 curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s  -- 'unattended'
+chsh -s /usr/bin/zsh
 
 echo "================ installing asdf ================\n"
 
@@ -31,31 +32,25 @@ sudo apt install apt-transport-https -y
 sudo apt update
 sudo apt install code -y
 
-echo "================ setting up asdf plugins ================\n"
+echo "================ installing brave ================\n"
 
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
-asdf plugin add github-cli
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
-asdf install github-cli latest
+sudo apt update
 
-asdf global github-cli latest
+sudo apt install brave-browser
 
-asdf plugin add awscli
+echo "================ installing 1password ================\n"
 
-asdf install awscli latest
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 
-asdf global awscli latest
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
 
-gh config set git_protocol ssh
+sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 
-echo "================ installing & setting up python ================\n"
-
-asdf plugin add python
-
-asdf install python 3.11.7
-
-asdf global python 3.11.7
-
-python -m pip install --upgrade pip
-
-pip install pipx
+ sudo apt update && sudo apt install 1password

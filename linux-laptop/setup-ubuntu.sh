@@ -2,7 +2,7 @@
 
 echo "================ install packages ================\n"
 
-sudo apt install -y curl git openssh-client gpg make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl git libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev zsh liblzma-dev fonts-noto
+sudo apt install -y curl git openssh-client gpg make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl git libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev zsh liblzma-dev fonts-noto powerline
 
 echo "================ configuring git ================\n"
 

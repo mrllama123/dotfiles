@@ -22,9 +22,9 @@ echo "================ installing & setting up python ================\n"
 
 asdf plugin add python
 
-asdf install python 3.11.7
+asdf install python 3.12.8
 
-asdf global python 3.11.7
+asdf global python 3.12.8
 
 python -m pip install --upgrade pip
 

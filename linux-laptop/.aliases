@@ -8,6 +8,8 @@ alias pass-gen="openssl rand -base64 32"
 #networking
 alias open-ports="sudo netstat -tulpn"
 
+# ssh
+alias ssh-key="ssh-keygen -t ed25519 -a 100"
 
 # cli copy/paste
 alias copy-clip="xclip -selection clipboard"

@@ -1,0 +1,30 @@
+# cdk
+alias cdk="npx cdk@latest"
+alias cdk-deploy-all="sudo rm -rf cdk.out && cdk deploy --all --concurrency 20 --require-approval never"
+
+# password
+alias pass-gen="openssl rand -base64 32"
+
+#networking
+alias open-ports="sudo netstat -tulpn"
+
+
+# cli copy/paste
+alias copy="pbcopy"
+
+# config editor commands
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+#zsh relaod
+
+alias zshre="source ~/.zshrc"
+
+# dotnet
+
+# Run this if you ever run into errors while doing a `dotnet restore`
+alias nugetclean="dotnet nuget locals --clear all"
+
+# colima
+
+alias col-start="colima start --vm-type=vz --vz-rosetta --network-address"

@@ -91,6 +91,11 @@ if [ -f "$HOME/.env-vars" ]; then
     source "$HOME/.env-vars"
 fi
 
+if [ -f "$HOME/.env-vars-secrets" ]; then
+    # Import environment variables from .env-var file
+    source "$HOME/.env-vars-secrets"
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

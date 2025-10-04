@@ -1,0 +1,21 @@
+# cdk
+alias cdk="npx cdk@latest"
+alias cdk-deploy-all="sudo rm -rf cdk.out && cdk deploy --all --concurrency 20 --require-approval never"
+
+# password
+alias pass-gen="openssl rand -base64 32"
+
+#networking
+alias open-ports="sudo netstat -tulpn"
+
+# ssh
+alias ssh-key="ssh-keygen -t ed25519 -a 100"
+
+# cli copy/paste
+alias copy-clip="xclip -selection clipboard"
+
+# config editor commands
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+
+alias zshre="source ~/.zshrc"

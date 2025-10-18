@@ -83,6 +83,7 @@ export DBX_SKIP_WORKDIR=1
 if [ -f "$HOME/.aliases" ]; then
     # Import aliases from .alias file
     source "$HOME/.aliases"
+    
 fi
 
 # Check if .env-var file exists
@@ -95,6 +96,12 @@ if [ -f "$HOME/.env-vars-secrets" ]; then
     # Import environment variables from .env-var file
     source "$HOME/.env-vars-secrets"
 fi
+
+
+
+eval "$(mise activate zsh)"
+
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

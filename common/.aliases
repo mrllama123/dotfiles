@@ -15,10 +15,10 @@ alias ssh-key="ssh-keygen -t ed25519 -a 100"
 alias copy-clip="xclip -selection clipboard"
 
 # config editor commands
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 
 alias zshre="source ~/.zshrc"
 
-alias vim="nvim"
+
 

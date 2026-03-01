@@ -1,0 +1,11 @@
+# cli copy/paste
+alias copy="pbcopy"
+
+# dotnet
+
+# Run this if you ever run into errors while doing a `dotnet restore`
+alias nugetclean="dotnet nuget locals --clear all"
+
+# colima
+
+alias col-start="colima start --vm-type=vz --vz-rosetta --network-address"

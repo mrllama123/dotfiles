@@ -76,20 +76,37 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# ensure that distrobox always uses home directory for the container as working directory
-export DBX_SKIP_WORKDIR=1
-
 # Check if .alias file exists
 if [ -f "$HOME/.aliases" ]; then
     # Import aliases from .alias file
     source "$HOME/.aliases"
+    
 fi
 
+if [ -f "$HOME/.aliases-mac" ]; then
+    # Import aliases from .alias file
+    source "$HOME/.aliases-mac"
+    
+fi
 # Check if .env-var file exists
 if [ -f "$HOME/.env-vars" ]; then
     # Import environment variables from .env-var file
     source "$HOME/.env-vars"
 fi
+
+# Check if .env-var file exists
+if [ -f "$HOME/.env-vars-secrets" ]; then
+    # Import environment variables from .env-var file
+    source "$HOME/.env-vars-secrets"
+fi
+
+
+# Check if .env-var file exists
+if [ -f "$HOME/.env-vars-mac" ]; then
+    # Import environment variables from .env-var file
+    source "$HOME/.env-vars-mac"
+fi
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -130,7 +147,7 @@ export PATH="$PATH:/Users/bob/.local/bin"
 #export PATH="/Users/bob/Library/Application Support/godotenv/godot/bin:$PATH"
 
 # <<< conda initialize <<<
-. ~/.asdf/plugins/golang/set-env.zsh
+. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
 #. ~/.asdf/plugins/java/set-java-home.zsh
 

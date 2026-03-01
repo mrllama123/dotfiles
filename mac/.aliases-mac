@@ -9,3 +9,44 @@ alias nugetclean="dotnet nuget locals --clear all"
 # colima
 
 alias col-start="colima start --vm-type=vz --vz-rosetta --network-address"
+
+# ai sheit
+alias getmd="npx @nanocollective/get-md@latest"
+
+# openwebui
+openweb-auth() {
+  echo -n "Enter password: " 
+  read  password
+
+  # Make the curl request and pipe to jq to extract the token
+  token=$(curl -X 'POST' \
+    'http://localhost:3000/api/v1/auths/signin' \
+    -H 'accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d "{
+    \"email\": \"piesrule123@gmail.com\",
+    \"password\": \"$password\"
+  }" | jq -r '.token')
+
+  # Check if token extraction was successful
+  if [ -z "$token" ]; then
+    echo "Error: Failed to extract token from response"
+    return 1
+  fi
+
+  # Update the .env-vars file
+  if [ -f "${HOME}/.env-vars" ]; then
+    # Check if the variable exists
+    if grep -q "^OPENWEBUI_TOKEN=" "${HOME}/.env-vars"; then
+      # Update existing variable
+      sed -i '' "s/^OPENWEBUI_TOKEN=.*/OPENWEBUI_TOKEN=$token/" "${HOME}/.env-vars"
+    else
+      # Add new variable
+      echo "OPENWEBUI_TOKEN=$token" >> "${HOME}/.env-vars"
+    fi
+    echo "Token updated in .env-vars"
+  else
+    echo "Error: .env-vars file not found"
+    return 1
+  fi
+} 

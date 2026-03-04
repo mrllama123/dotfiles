@@ -20,5 +20,7 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 
 alias zshre="source ~/.zshrc"
 
-
+yq() {
+  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
+}
 

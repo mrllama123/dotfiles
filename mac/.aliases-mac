@@ -35,14 +35,14 @@ openweb-auth() {
   fi
 
   # Update the .env-vars file
-  if [ -f "${HOME}/.env-vars" ]; then
+  if [ -f "${HOME}/.env-vars-secrets" ]; then
     # Check if the variable exists
-    if grep -q "^OPENWEBUI_TOKEN=" "${HOME}/.env-vars"; then
+    if grep -q "^OPENWEBUI_TOKEN=" "${HOME}/.env-vars-secrets"; then
       # Update existing variable
-      sed -i '' "s/^OPENWEBUI_TOKEN=.*/OPENWEBUI_TOKEN=$token/" "${HOME}/.env-vars"
+      sed -i '' "s/^OPENWEBUI_TOKEN=.*/OPENWEBUI_TOKEN=$token/" "${HOME}/.env-vars-secrets"
     else
       # Add new variable
-      echo "OPENWEBUI_TOKEN=$token" >> "${HOME}/.env-vars"
+      echo "OPENWEBUI_TOKEN=$token" >> "${HOME}/.env-vars-secrets"
     fi
     echo "Token updated in .env-vars"
   else

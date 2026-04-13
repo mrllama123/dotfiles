@@ -13,7 +13,7 @@ alias col-start="colima start --vm-type=vz --vz-rosetta --network-address"
 # ai sheit
 alias getmd="npx @nanocollective/get-md@latest"
 alias flux="ollama run x/flux2-klein:4b"
-
+alias z-image="ollama run x/z-image-turbo:latest"
 
 # openwebui
 openweb-auth() {

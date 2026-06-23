@@ -20,5 +20,6 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 
 alias zshre="source ~/.zshrc"
 
-
+# asdf 
+alias asdf-node-ins-lts="asdf cmd nodejs update-nodebuild && asdf install nodejs $(asdf cmd nodejs resolve lts)"
 

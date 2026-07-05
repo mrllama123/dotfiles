@@ -1,0 +1,2 @@
+# for gaming msi laptop keyboard color config. Needs: https://github.com/Askannz/msi-perkeyrgb
+alias msi-rgb-setup="msi-perkeyrgb --model GS75 -c ~/.config/msi-perkeyrgb/config.txt"

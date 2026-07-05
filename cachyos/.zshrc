@@ -80,6 +80,12 @@ source $ZSH/oh-my-zsh.sh
 export DBX_SKIP_WORKDIR=1
 
 # Check if .alias file exists
+if [ -f "$HOME/.cachyos-aliases" ]; then
+    # Import aliases from .cachyos-aliases file
+    source "$HOME/.cachyos-aliases"
+    
+fi
+
 if [ -f "$HOME/.aliases" ]; then
     # Import aliases from .alias file
     source "$HOME/.aliases"

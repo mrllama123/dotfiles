@@ -23,3 +23,10 @@ alias zshre="source ~/.zshrc"
 # asdf 
 alias asdf-node-ins-lts="asdf cmd nodejs update-nodebuild && asdf install nodejs $(asdf cmd nodejs resolve lts)"
 
+# yt-dlp
+
+# split youtube video into separate parts based on chapters and convert to mp3 with thumnail and other metadata 
+alias yt-mp3-chap='yt-dlp --split-chapters --extract-audio --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail --embed-chapters -o "Chapter_%(chapter_number)02d - %(section_title)s.%(ext)s"'
+# convert entire youtube video into separate parts based on chapters and convert to mp3 with thumnail and other metadata 
+alias yt-mp3-chap='yt-dlp --split-chapters --extract-audio --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail -o "Chapter_%(chapter_number)02d - %(section_title)s.%(ext)s"'
+

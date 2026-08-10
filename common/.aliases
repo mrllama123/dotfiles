@@ -29,4 +29,5 @@ alias asdf-node-ins-lts="asdf cmd nodejs update-nodebuild && asdf install nodejs
 alias yt-mp3-chap='yt-dlp --split-chapters --extract-audio --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail -o "Chapter_%(chapter_number)02d - %(section_title)s.%(ext)s"'
 
 # git 
-alias github-remote-https='git config --global url."https://github.com/".insteadOf ssh://git@github.com/'
+alias github-remote-https='git config --global url."https://github.com/".insteadOf git@github.com:'
+alias github-remote-unset='git config --global --unset url."https://github.com/".insteadOf'

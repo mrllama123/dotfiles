@@ -31,3 +31,6 @@ alias yt-mp3-chap='yt-dlp --split-chapters --extract-audio --audio-format mp3 --
 # git 
 alias github-remote-https='git config --global url."https://github.com/".insteadOf git@github.com:'
 alias github-remote-unset='git config --global --unset url."https://github.com/".insteadOf'
+
+alias forge-remote-https='git config --global url."https://github.com/forgejo.inteligensia.duckdns.org".insteadOf git@forgejo.inteligensia.duckdns.org:222'
+alias forge-remote-unset='git config --global --unset url."https://github.com/forgejo.inteligensia.duckdns.org".insteadOf'

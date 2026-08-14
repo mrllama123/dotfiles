@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 func take_damage(amount: int) -> void:
-    var actual_damage := int(amount * (1.0 - damage_reduction))
+    var actual_damage: int = int(amount * (1.0 - damage_reduction))
     _health = max(_health - actual_damage, 0)
     health_changed.emit(_health)
 
@@ -608,7 +608,7 @@ func _load_scene(path: String) -> void:
     ResourceLoader.load_threaded_request(path)
 
     while true:
-        var progress := []
+        var progress: Array = []
         var status := ResourceLoader.load_threaded_get_status(path, progress)
 
         match status:
@@ -666,15 +666,15 @@ func _play_transition_in() -> void:
 # save_manager.gd (Autoload)
 extends Node
 
-const SAVE_PATH := "user://savegame.save"
-const ENCRYPTION_KEY := "your_secret_key_here"
+const SAVE_PATH: String = "user://savegame.save"
+const ENCRYPTION_KEY: String= "your_secret_key_here"
 
 signal save_completed
 signal load_completed
 signal save_error(message: String)
 
 func save_game(data: Dictionary) -> void:
-    var file := FileAccess.open_encrypted_with_pass(
+    var file = FileAccess.open_encrypted_with_pass(
         SAVE_PATH,
         FileAccess.WRITE,
         ENCRYPTION_KEY
@@ -694,7 +694,7 @@ func load_game() -> Dictionary:
     if not FileAccess.file_exists(SAVE_PATH):
         return {}
 
-    var file := FileAccess.open_encrypted_with_pass(
+    var file = FileAccess.open_encrypted_with_pass(
         SAVE_PATH,
         FileAccess.READ,
         ENCRYPTION_KEY
@@ -735,8 +735,8 @@ func _ready() -> void:
         save_id = str(get_path())
 
 func get_save_data() -> Dictionary:
-    var parent := get_parent()
-    var data := {"id": save_id}
+    var parent: Node= get_parent()
+    var data: Dictionary = {"id": save_id}
 
     if parent is Node2D:
         data["position"] = {"x": parent.position.x, "y": parent.position.y}
@@ -747,7 +747,7 @@ func get_save_data() -> Dictionary:
     return data
 
 func load_save_data(data: Dictionary) -> void:
-    var parent := get_parent()
+    var parent: Node= get_parent()
 
     if data.has("position") and parent is Node2D:
         parent.position = Vector2(data.position.x, data.position.y)
@@ -799,6 +799,7 @@ func _on_off_screen() -> void:
 - **Don't put logic in resources** - Keep them data-only
 - **Don't ignore the Profiler** - Monitor performance
 - **Don't fight the scene tree** - Work with Godot's design
+- **Don't assign variables like: `var some_var := "test"`, Always use explicit types** - Performance issues
 
 ## Resources
 

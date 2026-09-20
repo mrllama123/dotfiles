@@ -52,3 +52,12 @@ openweb-auth() {
     return 1
   fi
 } 
+
+# useful dir
+
+alias vault-ob="cd ~/Documents/vaults/personal\ notes"
+
+# app shortcuts
+
+alias todo-main="vault-ob && tuxedo"
+

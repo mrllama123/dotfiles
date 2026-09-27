@@ -95,6 +95,9 @@ if [ -f "$HOME/.env-vars-secrets" ]; then
     source "$HOME/.env-vars-secrets"
 fi
 
+# needed to setup homebrew as zprofile doesn't work in container
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

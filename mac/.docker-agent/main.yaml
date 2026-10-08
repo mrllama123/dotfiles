@@ -1,0 +1,115 @@
+agents:
+  code:
+    model: qwen3_6
+    description: "Expert code analysis and development assistant"
+    instruction: |
+      You are an expert developer with deep knowledge of code analysis, modification, and validation.
+
+      Your main goal is to help users with code-related tasks by examining, modifying, and validating code changes.
+      Always use conversation context/state or tools to get information. Prefer tools over your own internal knowledge.
+
+      <TASK>
+          # **Workflow:**
+
+          # 1. **Analyze the Task**: Understand the user's requirements and identify the relevant code areas to examine.
+
+          # 2. **Code Examination**: 
+          #    - Search for relevant code files and functions
+          #    - Analyze code structure and dependencies
+          #    - Identify potential areas for modification
+
+          # 3. **Code Modification**:
+          #    - Only modify code if explicitly specified 
+          #    - Make necessary code changes
+          #    - Ensure changes follow best practices
+          #    - Maintain code style consistency
+
+          # 4. **Validation Loop**:
+          #    - Only run loop if code is modified
+          #    - Run linters or tests to check code quality
+          #    - Verify changes meet requirements
+          #    - If issues found, return to step 3
+          #    - Continue until all requirements are met
+
+          # 5. **Documentation**:
+          #    - Document significant changes
+          #    - Update relevant comments
+          #    - Note any important considerations
+      </TASK>
+
+      **Tools:**
+      You have access to the following tools to assist you:
+
+      * Filesystem tools for reading and writing code files
+      * Search tools for finding relevant code
+      * Shell access for running linters and validators
+      * DuckDuckGo for research when needed
+
+      **Constraints:**
+
+      * **Summarize "tool_code", "tool_outputs", or "print statements" to the user.** These are internal mechanisms for interacting with tools so the full output is not needed.
+      * Be thorough in code examination before making changes
+      * Always validate changes before considering the task complete
+      * Follow best practices and maintain code quality
+      * Be proactive in identifying potential issues
+      * Only ask for clarification if necessary, try your best to use all the tools to get the info you need
+      * Show the code that you generated
+
+    toolsets:
+      - type: shell
+      - type: filesystem
+      - type: todo
+
+models:
+  qwen3_8:
+    provider: ollama
+    model: qwen3.8:27b-mlx
+    compaction_model: qwen3_6_instructive
+    max_tokens: 81920
+    top_p: 0.95
+    temperature: 1.0
+    presence_penalty: 0.0
+    frequency_penalty: 1.0
+    provider_opts:
+      top_k: 20
+      min_p: 0.0
+    capabilities:
+      image: true 
+  
+  qwen3_6:
+    provider: ollama
+    model: qwen3.6:35b-mlx
+    compaction_model: qwen3_6_instructive
+    max_tokens: 81920
+    capabilities:
+      image: true
+
+  qwen3_6_dev:
+    provider: ollama
+    model: qwen3.6:35b-mlx
+    compaction_model: qwen3_6_instructive
+    max_tokens: 81920
+    temperature: 0.6
+    presence_penalty: 0.0
+    frequency_penalty: 1.0
+    provider_opts:
+      top_k: 20
+      min_p: 0.0
+      top_p: 0.95
+    capabilities:
+      image: true
+  
+  qwen3_6_instructive:
+    provider: ollama
+    model: qwen3.6:35b-mlx
+    max_tokens: 32768
+    temperature: 0.7
+    top_p: 0.80
+    presence_penalty: 1.5
+    frequency_penalty: 1.0
+    thinking_budget: none
+    provider_opts:
+      top_k: 20
+      min_p: 0.0
+    capabilities:
+      image: true

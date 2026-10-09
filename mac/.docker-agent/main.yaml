@@ -93,8 +93,8 @@ agents:
       - type: memory
       - type: rag
         ref: tech_docs
-      - type: mcp
-        ref: docker:fetch
+      # - type: mcp
+      #   ref: docker:fetch
 
 models:
   embeddinggemma_2:

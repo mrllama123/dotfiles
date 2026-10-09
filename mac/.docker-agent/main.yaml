@@ -1,6 +1,37 @@
+rag:
+  tech_docs:
+    tool:
+      description: "Technical documentation"
+    indexing_timeout: 2h
+    docs: [./llm-files]
+    strategies:
+      - type: chunked-embeddings
+        embedding_model: ollama/embeddinggemma-2:740m
+        database: ./tech-docs-vector.db
+        vector_dimensions: 768
+        limit: 20
+        chunking: { size: 1000, overlap: 100 }
+      - type: bm25
+        database: ./tech-docs-bm25.db
+        limit: 15
+        chunking: { size: 1000, overlap: 100 }
+    results:
+      fusion:
+        strategy: rrf # Reciprocal Rank Fusion
+        k: 60
+      reranking:
+        model: qwen3_6_instructive
+        top_k: 10 # only rerank top 10
+        threshold: 0.3 # minimum score after reranking
+        criteria: |
+          Prioritize official documentation over blog posts.
+          Prefer recent information and practical examples.
+      deduplicate: true
+      limit: 5
+        
 agents:
   code:
-    model: qwen3_6
+    model: qwen3_8
     description: "Expert code analysis and development assistant"
     instruction: |
       You are an expert developer with deep knowledge of code analysis, modification, and validation.
@@ -59,8 +90,18 @@ agents:
       - type: shell
       - type: filesystem
       - type: todo
+      - type: memory
+      - type: rag
+        ref: tech_docs
+      - type: mcp
+        ref: docker:fetch
 
 models:
+  embeddinggemma_2:
+    provider: ollama
+    model: embeddinggemma-2:740m
+    provider_opts:
+      output_dimensionality: 768
   qwen3_8:
     provider: ollama
     model: qwen3.8:27b-mlx

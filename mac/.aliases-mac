@@ -15,43 +15,36 @@ alias getmd="npx @nanocollective/get-md@latest"
 alias flux="ollama run x/flux2-klein:4b"
 alias z-image="ollama run x/z-image-turbo:latest"
 
-# openwebui
-openweb-auth() {
-  echo -n "Enter password: " 
-  read  password
+update_docker_mcp() {
+  # curl -L https://github.com/docker/mcp-gateway/releases/latest/download/docker-mcp-darwin-arm64.tar.gz -o docker-mcp-darwin-arm64.tar.gz
+  # gh release download -R docker/mcp-gateway --pattern 'docker-mcp-darwin-arm64.tar.gz'
+  OWNER="docker"
+  REPO="mcp-gateway"
+  PATTERN="docker-mcp-darwin-arm64.tar.gz"  
 
-  # Make the curl request and pipe to jq to extract the token
-  token=$(curl -X 'POST' \
-    'http://localhost:3000/api/v1/auths/signin' \
-    -H 'accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -d "{
-    \"email\": \"piesrule123@gmail.com\",
-    \"password\": \"$password\"
-  }" | jq -r '.token')
+  # Get the latest pre-release tag (released in descending order by default)
+  TAG=$(gh release list -R "$OWNER/$REPO" \
+        --json tagName,isPrerelease \
+      | jq -r '
+          .[]
+          | select(.isPrerelease == true)
+          | .tagName
+      ' | head -n 1)
 
-  # Check if token extraction was successful
-  if [ -z "$token" ]; then
-    echo "Error: Failed to extract token from response"
+  if [[ -z "$TAG" ]]; then
+    echo "No pre-releases found in $OWNER/$REPO"
     return 1
   fi
 
-  # Update the .env-vars file
-  if [ -f "${HOME}/.env-vars-secrets" ]; then
-    # Check if the variable exists
-    if grep -q "^OPENWEBUI_TOKEN=" "${HOME}/.env-vars-secrets"; then
-      # Update existing variable
-      sed -i '' "s/^OPENWEBUI_TOKEN=.*/OPENWEBUI_TOKEN=$token/" "${HOME}/.env-vars-secrets"
-    else
-      # Add new variable
-      echo "OPENWEBUI_TOKEN=$token" >> "${HOME}/.env-vars-secrets"
-    fi
-    echo "Token updated in .env-vars"
-  else
-    echo "Error: .env-vars file not found"
-    return 1
-  fi
-} 
+  echo "Latest pre-release: $TAG"
+
+  gh release download "$TAG" -R "$OWNER/$REPO" -p "$PATTERN" -O - | tar xvf - 
+  chmod +x ./docker-mcp
+  echo "Downloaded $PATTERN"
+  mkdir -p "$HOME/.docker/cli-plugins/"
+  mv -f docker-mcp "$HOME/.docker/cli-plugins/"
+  echo "installed docker-mcp into plugin folder"
+}
 
 # useful dir
 
@@ -60,4 +53,8 @@ alias vault-ob="cd ~/Documents/vaults/personal\ notes"
 # app shortcuts
 
 alias todo-main="vault-ob && tuxedo"
+
+# docker agent
+
+alias da-main="docker-agent run ~/.docker-agent/main.yaml"
 

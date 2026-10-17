@@ -98,6 +98,12 @@ fi
 # needed to setup homebrew as zprofile doesn't work in container
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# setup golang zsh
+. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

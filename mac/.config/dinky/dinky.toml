@@ -49,7 +49,7 @@ order = 'below'                 # below | above (a click-through ring over the w
 exclude-apps = []               # bundle IDs whose windows get no border
 
 [focus-follows-mouse]
-enabled = true
+enabled = false
 delay-ms = 100                  # how long the pointer rests on a window before it takes focus
 accordion-edges = true          # resting on a peeking accordion edge focuses that window
 
@@ -122,8 +122,8 @@ alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 alt-f = 'fullscreen'
 alt-shift-f = 'layout floating tiling'
-alt-comma = 'layout accordion'
-alt-slash = 'layout tiles'
+alt-comma = 'layout v_accordion h_accordion'
+alt-slash = 'layout h_tiles v_tiles'
 alt-shift-n = 'move-window-to-display next'
 alt-shift-semicolon = 'mode service'
 alt-shift-r = 'mode resize'

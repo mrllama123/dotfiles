@@ -34,3 +34,6 @@ alias github-remote-unset='git config --global --unset url."https://github.com/"
 
 alias forge-remote-https='git config --global url."https://github.com/forgejo.inteligensia.duckdns.org".insteadOf git@forgejo.inteligensia.duckdns.org:222'
 alias forge-remote-unset='git config --global --unset url."https://github.com/forgejo.inteligensia.duckdns.org".insteadOf'
+
+# rust
+alias rust-update-all="cargo-install-update install-update --all"

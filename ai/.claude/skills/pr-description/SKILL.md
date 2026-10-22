@@ -8,6 +8,8 @@ When writing a PR description:
 1. Run `git diff master...HEAD` to see all changes on this branch
 2. Write a description following this format as raw markdown:
 
+# Insert pr title here
+
 ## What
 One sentence explaining what this PR does.
 

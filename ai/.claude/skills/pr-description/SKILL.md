@@ -8,7 +8,7 @@ When writing a PR description:
 1. Run `git diff master...HEAD` to see all changes on this branch
 2. Write a description following this format as raw markdown:
 
-
+```markdown
 # Insert pr title here
 ## What
 One sentence explaining what this PR does.
@@ -20,3 +20,4 @@ Brief context on why this change is needed
 - Bullet points of specific changes made
 - Group related changes together
 - Mention any files deleted or renamed
+```

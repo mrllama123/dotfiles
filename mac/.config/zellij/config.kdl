@@ -642,6 +642,13 @@ show_startup_tips false
 // Note: be sure to escape backslashes and similar characters properly
 // post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
 
+// Wrapper workaround: Homebrew installs `pi` as an env-wrapper script
+// (bin/pi -> libexec/bin/pi with PI_SKIP_VERSION_CHECK=1). Zellij's command
+// discovery then reports `pi PI_SKIP_VERSION_CHECK=1`, so resurrecting a
+// session re-runs pi with that env var as a positional argument.
+// Strip leading/trailing `VAR=value` tokens from every discovered command.
+post_command_discovery_hook "echo \"$RESURRECT_COMMAND\" | sed -E 's/^[A-Za-z_][A-Za-z0-9_]*=[^ ]* //; s/ [A-Za-z_][A-Za-z0-9_]*=[^ ]*//g'"
+
 // Number of async worker tasks to spawn per active client.
 //
 // Allocating few tasks may result in resource contention and lags. Small values (around 4) should

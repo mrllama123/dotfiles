@@ -1,0 +1,254 @@
+---
+title: Godot release policy — Godot Engine (4.5) documentation in English
+url: https://docs.godotengine.org/en/4.5/about/release_policy.html
+crawled_at: "2026-08-13T10:39:17+12:00"
+content_hash: 3c82b594acc64f568911f2006c10256e85c62a76eb8232376a5346436973c7b2
+depth: 1
+---
+
+- Godot Engine 4.5 documentation in English
+
+  - [Home](../index.md)
+  - Godot release policy
+- - [Edit on GitHub](https://github.com/godotengine/godot-docs/blob/master/about/release_policy.rst)
+
+
+[Learn how to contribute!](https://contributing.godotengine.org/en/latest/organization/how_to_contribute.html)
+
+* * *
+
+# Godot release policy
+
+Godot's release policy is in constant evolution. The description below
+provides a general idea of what to expect, but what will actually
+happen depends on the choices of core contributors and the needs of the
+community at a given time.
+
+## Godot versioning
+
+Godot loosely follows [Semantic Versioning](https://semver.org/) with a
+`major.minor.patch` versioning system, albeit with an interpretation of each
+term adapted to the complexity of a game engine:
+
+- The `major` version is incremented when major compatibility breakages happen
+which imply significant porting work to move projects from one major version
+to another.
+
+For example, porting Godot projects from Godot 3.x to Godot 4.x requires
+running the project through a conversion tool, and then performing a number
+of further adjustments manually for what the tool could not do automatically.
+
+- The `minor` version is incremented for feature releases that do not break
+compatibility in a major way. Minor compatibility breakage in very specific
+areas _may_ happen in minor versions, but the vast majority of projects
+should not be affected or require significant porting work.
+
+This is because Godot, as a game engine, covers many areas like rendering,
+physics, and scripting. Fixing bugs or implementing new features in one area
+might sometimes require changing a feature's behavior or modifying a class's
+interface, even if the rest of the engine API remains backwards compatible.
+
+
+Tip
+
+Upgrading to a new minor version is recommended for all users,
+but some testing is necessary to ensure that your project still behaves as
+expected.
+
+- The `patch` version is incremented for maintenance releases which focus on
+fixing bugs and security issues, implementing new requirements for platform
+support, and backporting safe usability enhancements. Patch releases are
+backwards compatible.
+
+Patch versions may include minor new features which do not impact the
+existing API, and thus have no risk of impacting existing projects.
+
+
+Tip
+
+Updating to new patch versions is therefore considered safe and strongly
+recommended to all users of a given stable branch.
+
+We call `major.minor` combinations _stable branches_. Each stable branch
+starts with a `major.minor` release (without the `0` for `patch`) and is
+further developed for maintenance releases in a Git branch of the same name
+(for example patch updates for the 4.0 stable branch are developed in the
+`4.0` Git branch).
+
+## Release support timeline
+
+Stable branches are supported _at least_ until the next stable branch is
+released and has received its first patch update. In practice, we support
+stable branches on a _best effort_ basis for as long as they have active users
+who need maintenance updates.
+
+Whenever a new major version is released, we make the previous stable branch a
+long-term supported release, and do our best to provide fixes for issues
+encountered by users of that branch who cannot port complex projects to the new
+major version. This was the case for the 2.1 branch, and is the case for the
+3.x branch.
+
+In a given minor release series, only the latest patch release receives support.
+If you experience an issue using an older patch release, please upgrade to the
+latest patch release of that series and test again before reporting an issue
+on GitHub.
+
+For an overview of current, past, and future releases, refer to the table on
+the stable branch of the documentation:
+[Release support table](https://docs.godotengine.org/en/stable/about/release_policy.html#release-support-timeline).
+
+## Which version should I use for a new project?
+
+We recommend using Godot 4.x for new projects, as the Godot 4.x series will be
+supported long after 3.x stops receiving updates in the future. One caveat is
+that a lot of third-party documentation hasn't been updated for Godot 4.x yet.
+If you have to follow a tutorial designed for Godot 3.x, we recommend keeping
+[Upgrading from Godot 3 to Godot 4](../tutorials/migrating/upgrading_to_godot_4.md#doc-upgrading-to-godot-4) open in a separate tab to check which methods
+have been renamed (if you get a script error while trying to use a specific node
+or method that was renamed in Godot 4.x).
+
+If your project requires a feature that is missing in 4.x (such as GLES2/WebGL
+1.0), you should use Godot 3.x for a new project instead.
+
+See also
+
+See [Upgrading from Godot 3 to Godot 4](../tutorials/migrating/upgrading_to_godot_4.md#doc-upgrading-to-godot-4) for instructions on migrating a project
+from Godot 3.x to 4.x.
+
+## Should I upgrade my project to use new engine versions?
+
+Note
+
+Upgrading software while working on a project is inherently risky, so
+consider whether it's a good idea for your project before attempting an
+upgrade. Also, make backups of your project or use version control to
+prevent losing data in case the upgrade goes wrong.
+
+That said, we do our best to keep minor and especially patch releases
+compatible with existing projects.
+
+The general recommendation is to upgrade your project to follow new _patch_
+releases, such as upgrading from 4.0.2 to 4.0.3. This ensures you get bug fixes,
+security updates and platform support updates (which is especially important for
+mobile platforms). You also get continued support, as only the last patch
+release receives support on official community platforms.
+
+For _minor_ releases, you should determine whether it's a good idea to upgrade
+on a case-by-case basis. We've made a lot of effort in making the upgrade
+process as seamless as possible, but some breaking changes may be present in
+minor releases, along with a greater risk of regressions. Some fixes included in
+minor releases may also change a class' expected behavior as required to fix
+some bugs. This is especially the case in classes marked as _experimental_ in
+the documentation.
+
+_Major_ releases bring a lot of new functionality, but they also remove
+previously existing functionality and may raise hardware requirements. They also
+require much more work to upgrade to compared to minor releases. As a result, we
+recommend sticking with the major release you've started your project with if
+you are happy with how your project currently works. For example, if your
+project was started with 3.5, we recommend upgrading to 3.5.2 and possibly 3.6
+in the future, but not to 4.0+, unless your project really needs the new
+features that come with 4.0+.
+
+## When is the next release out?
+
+While Godot contributors aren't working under any deadlines, we strive to
+publish minor releases relatively frequently.
+
+In particular, after the very long release cycle for 4.0, we are pivoting to
+a faster-paced development workflow, 4.1 released 4 months after 4.0, and 4.2
+released 4 months after 4.1.
+
+Frequent minor releases will enable us to ship new features faster (possibly
+as experimental), get user feedback quickly, and iterate to improve those
+features and their usability. Likewise, the general user experience will be
+improved more steadily with a faster path to the end users.
+
+Maintenance (patch) releases are released as needed with potentially very
+short development cycles, to provide users of the current stable branch with
+the latest bug fixes for their production needs.
+
+There is currently no planned release date for the next 3.x minor version, 3.7.
+The current stable release, 3.6, may be the last stable branch of Godot 3.x.
+Godot 3.x is supported on a best-effort basis, as long as contributors continue
+to maintain it.
+
+## What are the criteria for compatibility across engine versions?
+
+Note
+
+This section is intended to be used by contributors to determine which
+changes are safe for a given release. The list is not exhaustive; it only
+outlines the most common situations encountered during Godot's development.
+
+The following changes are acceptable in patch releases:
+
+- Fixing a bug in a way that has no major negative impact on most projects, such
+as a visual or physics bug. Godot's physics engine is not deterministic, so
+physics bug fixes are not considered to break compatibility. If fixing a bug
+has a negative impact that could impact a lot of projects, it should be made
+optional (e.g. using a project setting or separate method).
+
+- Adding a new optional parameter to a method.
+
+- Small-scale editor usability tweaks.
+
+
+Note that we tend to be more conservative with the fixes we allow in each
+subsequent patch release. For instance, 4.0.1 may receive more impactful fixes
+than 4.0.4 would.
+
+The following changes are acceptable in minor releases, but not patch releases:
+
+- Significant new features.
+
+- Renaming a method parameter. In C#, method parameters can be passed by name
+(but not in GDScript). As a result, this can break some projects that use C#.
+
+- Deprecating a method, member variable, or class. This is done by adding a
+deprecated flag to its class reference, which will show up in the editor. When
+a method is marked as deprecated, it's slated to be removed in the next
+_major_ release.
+
+- Changes that affect the default project theme's visuals.
+
+- Bug fixes which significantly change the behavior or the output, with the aim
+to meet user expectations better. In comparison, in patch releases, we may
+favor keeping a buggy behavior so we don't break existing projects which
+likely already rely on the bug or use a workaround.
+
+- Performance optimizations that result in visual changes.
+
+
+The following changes are considered **compatibility-breaking** and can only be
+performed in a new major release:
+
+- Renaming or removing a method, member variable, or class.
+
+- Modifying a node's inheritance tree by making it inherit from a different class.
+
+- Changing the default value of a project setting value in a way that affects existing
+projects. To only affect new projects, the project manager should write a
+modified `project.godot` instead.
+
+
+Since Godot 5.0 hasn't been branched off yet, we currently discourage making
+compatibility-breaking changes of this kind.
+
+Note
+
+When modifying a method's signature in any fashion (including adding an
+optional parameter), a GDExtension compatibility method must be created.
+This ensures that existing GDExtensions continue to work across patch and
+minor releases, so that users don't have to recompile them.
+See [Handling compatibility breakages](../engine_details/development/handling_compatibility_breakages.md#doc-handling-compatibility-breakages) for more information.
+
+[Previous](complying_with_licenses.md "Complying with licenses") [Next](docs_changelog.md "Documentation changelog")
+
+* * *
+
+© Copyright 2014-present Juan Linietsky, Ariel Manzur and the Godot community (CC BY 3.0).
+
+Built with [Sphinx](https://www.sphinx-doc.org/) using a
+[theme](https://github.com/readthedocs/sphinx_rtd_theme)
+provided by [Read the Docs](https://readthedocs.org).

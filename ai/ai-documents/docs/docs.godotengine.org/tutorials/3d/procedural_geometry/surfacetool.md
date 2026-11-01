@@ -1,0 +1,261 @@
+---
+title: Using the SurfaceTool — Godot Engine (4.5) documentation in English
+url: https://docs.godotengine.org/en/4.5/tutorials/3d/procedural_geometry/surfacetool.html
+crawled_at: "2026-08-13T10:30:51+12:00"
+content_hash: b46b6da99796c021768f0c312fc05a9234e0723136a6a376882571c30e9b06a0
+depth: 1
+---
+
+- Godot Engine 4.5 documentation in English
+
+  - [Home](../../../index.md)
+  - [3D](../index.md)
+  - [Procedural geometry](index.md)
+  - Using the SurfaceTool
+- - [Edit on GitHub](https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/procedural_geometry/surfacetool.rst)
+
+
+[Learn how to contribute!](https://contributing.godotengine.org/en/latest/organization/how_to_contribute.html)
+
+* * *
+
+# Using the SurfaceTool
+
+The [SurfaceTool](../../../classes/class_surfacetool.md#class-surfacetool) provides a useful interface for constructing geometry.
+The interface is similar to the [ImmediateMesh](../../../classes/class_immediatemesh.md#class-immediatemesh) class. You
+set each per-vertex attribute (e.g. normal, uv, color) and then when you add a vertex it
+captures the attributes.
+
+The SurfaceTool also provides some useful helper functions like `index()` and `generate_normals()`.
+
+Attributes are added before each vertex is added:
+
+GDScriptC#
+
+```
+var st = SurfaceTool.new()
+
+st.begin(Mesh.PRIMITIVE_TRIANGLES)
+
+st.set_normal() # Overwritten by normal below.
+st.set_normal() # Added to next vertex.
+st.set_color() # Added to next vertex.
+st.add_vertex() # Captures normal and color above.
+st.set_normal() # Normal never added to a vertex.
+
+```
+
+```
+st.SetNormal(); // Overwritten by normal below.
+st.SetNormal(); // Added to next vertex.
+st.SetColor(); // Added to next vertex.
+st.AddVertex(); // Captures normal and color above.
+st.SetNormal(); // Normal never added to a vertex.
+
+```
+
+When finished generating your geometry with the [SurfaceTool](../../../classes/class_surfacetool.md#class-surfacetool),
+call `commit()` to finish generating the mesh. If an [ArrayMesh](../../../classes/class_arraymesh.md#class-arraymesh) is passed
+to `commit()`, then it appends a new surface to the end of the ArrayMesh. While if nothing is passed
+in, `commit()` returns an ArrayMesh.
+
+GDScriptC#
+
+```
+# Add surface to existing ArrayMesh.
+st.commit(mesh)
+
+# -- Or Alternatively --
+
+# Create new ArrayMesh.
+var mesh = st.commit()
+
+```
+
+```
+st.Commit(mesh);
+// Or:
+var mesh = st.Commit();
+
+```
+
+The code below creates a triangle without indices.
+
+GDScriptC#
+
+```
+var st = SurfaceTool.new()
+
+st.begin(Mesh.PRIMITIVE_TRIANGLES)
+
+# Prepare attributes for add_vertex.
+st.set_normal(Vector3(0, 0, 1))
+st.set_uv(Vector2(0, 0))
+# Call last for each vertex, adds the above attributes.
+st.add_vertex(Vector3(-1, -1, 0))
+
+st.set_normal(Vector3(0, 0, 1))
+st.set_uv(Vector2(0, 1))
+st.add_vertex(Vector3(-1, 1, 0))
+
+st.set_normal(Vector3(0, 0, 1))
+st.set_uv(Vector2(1, 1))
+st.add_vertex(Vector3(1, 1, 0))
+
+# Commit to a mesh.
+var mesh = st.commit()
+
+```
+
+```
+var st = new SurfaceTool();
+
+st.Begin(Mesh.PrimitiveType.Triangles);
+
+// Prepare attributes for AddVertex.
+st.SetNormal(new Vector3(0, 0, 1));
+st.SetUV(new Vector2(0, 0));
+// Call last for each vertex, adds the above attributes.
+st.AddVertex(new Vector3(-1, -1, 0));
+
+st.SetNormal(new Vector3(0, 0, 1));
+st.SetUV(new Vector2(0, 1));
+st.AddVertex(new Vector3(-1, 1, 0));
+
+st.SetNormal(new Vector3(0, 0, 1));
+st.SetUV(new Vector2(1, 1));
+st.AddVertex(new Vector3(1, 1, 0));
+
+// Commit to a mesh.
+var mesh = st.Commit();
+
+```
+
+You can optionally add an index array, either by calling `add_index()` and adding
+vertices to the index array manually, or by calling `index()` once,
+which generates the index array automatically and
+shrinks the vertex array to remove duplicate vertices.
+
+GDScriptC#
+
+```
+# Suppose we have a quad defined by 6 vertices as follows
+st.add_vertex(Vector3(-1, 1, 0))
+st.add_vertex(Vector3(1, 1, 0))
+st.add_vertex(Vector3(-1, -1, 0))
+
+st.add_vertex(Vector3(1, 1, 0))
+st.add_vertex(Vector3(1, -1, 0))
+st.add_vertex(Vector3(-1, -1, 0))
+
+# We can make the quad more efficient by using an index array and only utilizing 4 vertices
+
+# Suppose we have a quad defined by 6 vertices as follows
+st.add_vertex(Vector3(-1, 1, 0))
+st.add_vertex(Vector3(1, 1, 0))
+st.add_vertex(Vector3(-1, -1, 0))
+
+st.add_vertex(Vector3(1, 1, 0))
+st.add_vertex(Vector3(1, -1, 0))
+st.add_vertex(Vector3(-1, -1, 0))
+
+# We can make the quad more efficient by using an index array and only utilizing 4 vertices
+
+# Creates a quad from four corner vertices.
+# add_index() can be called before or after add_vertex()
+# since it's not an attribute of a vertex itself.
+st.add_index(0)
+st.add_index(1)
+st.add_index(2)
+
+st.add_index(1)
+st.add_index(3)
+st.add_index(2)
+
+# Alternatively we can use ``st.index()`` which will create the quad for us and remove the duplicate vertices
+st.index()
+
+```
+
+```
+// Creates a quad from four corner vertices.
+// AddIndex does not need to be called before AddVertex.
+st.AddIndex(0);
+st.AddIndex(1);
+st.AddIndex(2);
+
+st.AddIndex(1);
+st.AddIndex(3);
+st.AddIndex(2);
+
+// Alternatively:
+st.Index();
+
+```
+
+Similarly, if you have an index array, but you want each vertex to be unique (e.g. because
+you want to use unique normals or colors per face instead of per-vertex), you can call `deindex()`.
+
+GDScriptC#
+
+```
+st.deindex()
+
+```
+
+```
+st.Deindex();
+
+```
+
+If you don't add custom normals yourself, you can add them using `generate_normals()`, which should
+be called after generating geometry and before committing the mesh using `commit()` or
+`commit_to_arrays()`. Calling `generate_normals(true)` will flip the resulting normals. As a side
+note, `generate_normals()` only works if the primitive type is set to `Mesh.PRIMITIVE_TRIANGLES`.
+
+You may notice that normal mapping or other material properties look broken on
+the generated mesh. This is because normal mapping **requires** the mesh to
+feature _tangents_, which are separate from _normals_. You can either add custom
+tangents manually, or generate them automatically with
+`generate_tangents()`. This method requires that each vertex have UVs and
+normals set already.
+
+GDScriptC#
+
+```
+st.generate_normals()
+st.generate_tangents()
+
+st.commit(mesh)
+
+```
+
+```
+st.GenerateNormals();
+st.GenerateTangents();
+
+```
+
+By default, when generating normals, they will be calculated on a per-vertex basis (i.e. they will
+be "smooth normals"). If you want flat vertex normals (i.e. a single normal vector per face), when
+adding vertices, call `add_smooth_group(i)` where `i` is a unique number per vertex.
+`add_smooth_group()` needs to be called while building the geometry, e.g. before the call to
+`add_vertex()`.
+
+[Previous](meshdatatool.md "Using the MeshDataTool") [Next](immediatemesh.md "Using ImmediateMesh")
+
+* * *
+
+## User-contributed notes
+
+_Please read the [User-contributed notes policy](https://github.com/godotengine/godot-docs-user-notes/discussions/1) before submitting a comment._
+
+[Previous](meshdatatool.md "Using the MeshDataTool") [Next](immediatemesh.md "Using ImmediateMesh")
+
+* * *
+
+© Copyright 2014-present Juan Linietsky, Ariel Manzur and the Godot community (CC BY 3.0).
+
+Built with [Sphinx](https://www.sphinx-doc.org/) using a
+[theme](https://github.com/readthedocs/sphinx_rtd_theme)
+provided by [Read the Docs](https://readthedocs.org).

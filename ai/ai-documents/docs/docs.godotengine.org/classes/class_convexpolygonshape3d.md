@@ -1,0 +1,75 @@
+---
+title: ConvexPolygonShape3D — Godot Engine (4.5) documentation in English
+url: https://docs.godotengine.org/en/4.5/classes/class_convexpolygonshape3d.html
+crawled_at: "2026-08-13T10:22:02+12:00"
+content_hash: d54c14fd8a59cf1f1d868a7e16732c34875233279240ed9923c5ac96ada9ef70
+depth: 1
+---
+
+- Godot Engine 4.5 documentation in English
+
+  - [Home](../index.md)
+  - [All classes](index.md)
+  - ConvexPolygonShape3D
+
+* * *
+
+# ConvexPolygonShape3D
+
+**Inherits:** [Shape3D](class_shape3d.md#class-shape3d) **<** [Resource](class_resource.md#class-resource) **<** [RefCounted](class_refcounted.md#class-refcounted) **<** [Object](class_object.md#class-object)
+
+A 3D convex polyhedron shape used for physics collision.
+
+## Description
+
+A 3D convex polyhedron shape, intended for use in physics. Usually used to provide a shape for a [CollisionShape3D](class_collisionshape3d.md#class-collisionshape3d).
+
+**ConvexPolygonShape3D** is _solid_, which means it detects collisions from objects that are fully inside it, unlike [ConcavePolygonShape3D](class_concavepolygonshape3d.md#class-concavepolygonshape3d) which is hollow. This makes it more suitable for both detection and physics.
+
+**Convex decomposition:** A concave polyhedron can be split up into several convex polyhedra. This allows dynamic physics bodies to have complex concave collisions (at a performance cost) and can be achieved by using several **ConvexPolygonShape3D** nodes. To generate a convex decomposition from a mesh, select the [MeshInstance3D](class_meshinstance3d.md#class-meshinstance3d) node, go to the **Mesh** menu that appears above the viewport, and choose **Create Multiple Convex Collision Siblings**. Alternatively, [MeshInstance3D.create\_multiple\_convex\_collisions()](class_meshinstance3d.md#class-meshinstance3d-method-create-multiple-convex-collisions) can be called in a script to perform this decomposition at run-time.
+
+**Performance:** **ConvexPolygonShape3D** is faster to check collisions against compared to [ConcavePolygonShape3D](class_concavepolygonshape3d.md#class-concavepolygonshape3d), but it is slower than primitive collision shapes such as [SphereShape3D](class_sphereshape3d.md#class-sphereshape3d) and [BoxShape3D](class_boxshape3d.md#class-boxshape3d). Its use should generally be limited to medium-sized objects that cannot have their collision accurately represented by primitive shapes.
+
+## Tutorials
+
+- [3D Physics Tests Demo](https://godotengine.org/asset-library/asset/2747)
+
+
+## Properties
+
+|     |     |     |
+| --- | --- | --- |
+| [PackedVector3Array](class_packedvector3array.md#class-packedvector3array) | [points](#class-convexpolygonshape3d-property-points) | `PackedVector3Array()` |
+
+* * *
+
+## Property Descriptions
+
+[PackedVector3Array](class_packedvector3array.md#class-packedvector3array) **points** = `PackedVector3Array()` [🔗](#class-convexpolygonshape3d-property-points)
+
+- void **set\_points**(value: [PackedVector3Array](class_packedvector3array.md#class-packedvector3array))
+
+- [PackedVector3Array](class_packedvector3array.md#class-packedvector3array) **get\_points**()
+
+
+The list of 3D points forming the convex polygon shape.
+
+**Note:** The returned array is _copied_ and any changes to it will not update the original property value. See [PackedVector3Array](class_packedvector3array.md#class-packedvector3array) for more details.
+
+[Previous](class_convexpolygonshape2d.md "ConvexPolygonShape2D") [Next](class_cryptokey.md "CryptoKey")
+
+* * *
+
+## User-contributed notes
+
+_Please read the [User-contributed notes policy](https://github.com/godotengine/godot-docs-user-notes/discussions/1) before submitting a comment._
+
+[Previous](class_convexpolygonshape2d.md "ConvexPolygonShape2D") [Next](class_cryptokey.md "CryptoKey")
+
+* * *
+
+© Copyright 2014-present Juan Linietsky, Ariel Manzur and the Godot community (CC BY 3.0).
+
+Built with [Sphinx](https://www.sphinx-doc.org/) using a
+[theme](https://github.com/readthedocs/sphinx_rtd_theme)
+provided by [Read the Docs](https://readthedocs.org).

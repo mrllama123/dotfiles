@@ -1,0 +1,8 @@
+servers:
+- name: Home Server
+  quick_connect: true
+  url: https://jellyfin.inteligensia.duckdns.org
+
+art: true
+persist: true
+

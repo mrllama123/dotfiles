@@ -96,8 +96,6 @@ if [ -f "$HOME/.env-vars-secrets" ]; then
 fi
 
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
 # setup golang zsh
 # . ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
@@ -126,5 +124,3 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-. "$HOME/.local/bin/env"

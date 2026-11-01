@@ -169,6 +169,11 @@ keybinds clear-defaults=true {
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt i" { MoveTab "left"; }
         bind "Alt o" { MoveTab "right"; }
+        bind "Alt s" {
+            LaunchOrFocusPlugin "zellij-switcher" {
+                floating true
+            }
+        }
     }
     shared_except "scroll" {
         bind "Alt left" { MoveFocusOrTab "left"; }
@@ -184,14 +189,14 @@ keybinds clear-defaults=true {
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Ctrl q" { Quit; }
-        bind "Ctrl ]" { 
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-choose-tree.wasm" {
-                floating true
-                move_to_focused_tab true
-                show_plugins false
-            }; 
-            SwitchToMode "Locked";
-        }
+        // bind "Ctrl ]" { 
+        //     LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-choose-tree.wasm" {
+        //         floating true
+        //         move_to_focused_tab true
+        //         show_plugins false
+        //     }; 
+        //     SwitchToMode "Locked";
+        // }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }
@@ -300,6 +305,13 @@ plugins {
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
     }
+    zellij-switcher location="file:~/.config/zellij/plugins/zellij-switcher.wasm" {
+        // All configuration goes here — see the Configuration section below
+        header_title "Session Manager"
+        show_navigation_help "true"
+        selection_prefix "> "
+        list_padding "2"
+  }
 }
 
 // Plugins to load in the background when a new session starts
@@ -307,6 +319,7 @@ plugins {
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
     zellij:link
+    "zellij-switcher"
 }
 web_client {
     font "monospace"

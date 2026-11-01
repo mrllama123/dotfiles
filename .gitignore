@@ -62,3 +62,6 @@ tmbootpicker.efi
 mac/.docker-agent/*.db
 mac/.docker-agent/*-shm
 mac/.docker-agent/*-wal
+
+# pi
+.pi/fabric

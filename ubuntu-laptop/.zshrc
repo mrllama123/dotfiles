@@ -70,7 +70,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf)
+plugins=(git asdf uv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,7 +95,7 @@ if [ -f "$HOME/.env-vars-secrets" ]; then
     source "$HOME/.env-vars-secrets"
 fi
 
-
+export PATH="$HOME/bin:$HOME/.local/bin/env:$PATH"
 # setup golang zsh
 # . ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
@@ -124,3 +124,5 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+. "$HOME/.local/bin/env"
